@@ -278,6 +278,10 @@ def music(fadedying):
     playsound('fadedying.mp3')
 fadedying = multiprocessing.Process(target=music, args=(1,))
 
+def music(piano):
+    playsound('piano.mp3')
+piano = multiprocessing.Process(target=music, args=(1,))
+
 
 # Sequence start
 while True:
@@ -428,7 +432,7 @@ Many years pass before you realize you won't forget that sound.....'''))
         print()
         print()
         print()
-        print(fastest_type('''Can't see'''))
+        print(fastest_type('''Can't see.'''))
         sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=12, cols=56))
         print()
         print()
@@ -516,7 +520,8 @@ Many years pass before you realize you won't forget that sound.....'''))
         sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
         break
 
+piano.start()
 import blinking_effect
-blinking_effect
+
 
   

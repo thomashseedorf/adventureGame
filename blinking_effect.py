@@ -8,7 +8,7 @@ sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
 print('\033c', end='') # Clear the terminal
 
 def blinking_stars():
-    for _ in range(6):
+    for _ in range(5):
         x = random.randint(0, 129)
         y = random.randint(0, 40)
         print('\033[?25l', end="")
@@ -35,7 +35,7 @@ for p in processes:
 
 
 def blinking_stars2():
-    for _ in range(6):
+    for _ in range(5):
         x = random.randint(0, 129)
         y = random.randint(0, 40)
         print('\033[?25l', end="")
@@ -61,7 +61,7 @@ for p in processes:
     p.join()
 
 def blinking_stars3():
-    for _ in range(6):
+    for _ in range(5):
         x = random.randint(0, 129)
         y = random.randint(0, 40)
         print('\033[?25l', end="")
@@ -87,7 +87,7 @@ for p in processes:
     p.join()
 
 def blinking_stars4():
-    for _ in range(6):
+    for _ in range(5):
         x = random.randint(0, 129)
         y = random.randint(0, 40)
         print('\033[?25l', end="")

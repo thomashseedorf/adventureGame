@@ -148,6 +148,7 @@ while True:
     elif begin in ["Y", "YES"]:
         print("\nGreat! Let's get adventuring!\n")
         print("\nBut first things first.\n")
+        global given_name
         given_name = input("What's your full name? ")
         print("\nThank you. That's really all I need.\n")
         print("Take some time to review the controls. Press X at any time to see them again.")
@@ -538,9 +539,10 @@ Maybe you'll find something that can help, you think to yourself.'''))
                 print()
                 print()
                 import chap1ending_sequence
-
-
-
+                print(welcome.slow_type(given_name, "............wake up......"))
+                print('\033c', end='') # Clear the terminal
+                print(welcome.slow_type("A mysterious voice calls out and then fades away...."))
+                print('\033c', end='') # Clear the terminal
 
 
 
