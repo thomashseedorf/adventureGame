@@ -7,11 +7,12 @@ import sys
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
 import time
 import os
-from welcome import slow_type
 import random
 import multiprocessing
 import cv2
-from z import given_name
+if __name__ == "__main__":
+    import zdx
+    import blinking_effect
 
 # CONSTANTS
 FORWARD = "W"
@@ -25,6 +26,15 @@ INFO = "X"
 # FUNCTIONS
 
 # General
+
+def slow_type(t):
+    for l in t:
+        typing_speed = 80  # wpm
+        sys.stdout.write(l)
+        sys.stdout.flush()
+        time.sleep(random.random()*10.0/typing_speed)
+    return ('')
+
 def slow_type2(t, r, s):
     for l in t, r, s:
         typing_speed = 80  # wpm
@@ -525,10 +535,9 @@ Many years pass before you realize you won't forget that sound.....'''))
         break
 
 piano.start()
-import blinking_effect
 blinking_effect.blinky()
 print('\033c', end='') # Clear the terminal
-print(slow_type(given_name, "......................................wake up................"))
+print(slow_type(zdx.given_name, "......................................wake up................"))
 print('\033c', end='') # Clear the terminal
 print(slow_type("A mysterious voice calls out and then fades away............"))
 print('\033c', end='') # Clear the terminal

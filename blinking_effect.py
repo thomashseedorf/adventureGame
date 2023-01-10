@@ -22,7 +22,7 @@ def blinky():
         processes = []
 
         # Create 800 processes
-        for i in range(800):
+        for i in range(500):
             p = multiprocessing.Process(target=blinking_stars)
             processes.append(p)
 
