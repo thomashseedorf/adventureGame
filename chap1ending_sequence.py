@@ -11,6 +11,7 @@ import welcome
 import random
 import multiprocessing
 import cv2
+import blink
 
 # CONSTANTS
 FORWARD = "W"
@@ -57,7 +58,6 @@ def fastest_type(t):
     return ('')
 
 def death_animate():
-    time.sleep(.5)
     img = cv2.imread("images/skull1.jpg", 1) #Read image
     img2 = cv2.imread("images/skull2.jpg", 1)
     img3 = cv2.imread("images/skull3.jpg", 1)

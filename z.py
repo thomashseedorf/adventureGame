@@ -1,6 +1,6 @@
 """This is a retro text-based adventure game.
     
-    Version 1.0 12-20-2022"""
+    Version 2.0 1-8-2022"""
 from playsound import playsound
 from gif_for_cli.execute import execute
 import textwrap
@@ -551,7 +551,8 @@ Maybe you'll find something that can help, you think to yourself.'''))
 
 
 
-
+        clear()
+        time.sleep(.5)
         print(welcome.slow_type("You wake up in a luxurious but imposing palace. The marble walls and immaculate fixtures are highlighted with ribbons of gold and silver. Rubies, sapphires, emeralds, and diamonds line the legs of every table, the base and top of every cabinet, and the frame of every door. Twinkles of light flicker this way and that as you scan the room and your vision focuses."))
         print()
         print()
