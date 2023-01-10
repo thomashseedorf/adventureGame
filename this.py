@@ -513,6 +513,7 @@ Many years pass before you realize you won't forget that sound.....'''))
         print()
         print()
         print(fastest_type('''...........see......'''))
+        print('\033c', end='') # Clear the terminal
         death_animate() # Begin death collage
         sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=1, cols=31))
         clear()
@@ -522,6 +523,8 @@ Many years pass before you realize you won't forget that sound.....'''))
 
 piano.start()
 import blinking_effect
+blinking_effect.blinky()
+print('\033c', end='') # Clear the terminal
 print(welcome.slow_type("tom............wake up......"))
 print('\033c', end='') # Clear the terminal
 print(welcome.slow_type("A mysterious voice calls out and then fades away...."))

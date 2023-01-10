@@ -7,10 +7,11 @@ import sys
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
 import time
 import os
-import welcome
+from welcome import slow_type
 import random
 import multiprocessing
 import cv2
+from z import given_name
 
 # CONSTANTS
 FORWARD = "W"
@@ -79,9 +80,10 @@ def death_animate():
     img20 = cv2.imread("images/skull20.jpg", 1)
     img21 = cv2.imread("images/skull21.jpg", 1)
     cv2.imshow("I1", img) # Display image
+    cv2.moveWindow("I3", random.randrange(1920), random.randrange(1080)) # Move windows to (x,y) position
     time.sleep(.1)
     cv2.imshow("I2", img2)
-    cv2.moveWindow("I2", random.randrange(1920), random.randrange(1080)) # Move windows to (x,y) position
+    cv2.moveWindow("I2", random.randrange(1920), random.randrange(1080)) 
     time.sleep(.1)
     cv2.imshow("I3", img3)
     cv2.moveWindow("I3", random.randrange(1920), random.randrange(1080))
@@ -287,7 +289,7 @@ piano = multiprocessing.Process(target=music, args=(1,))
 while True:
         fadedying.start()
         time.sleep(.01)
-        print(welcome.slow_type('''As you're leaving, you hear the dragon's terrible, earth-rumbling whimper one last time.
+        print(slow_type('''As you're leaving, you hear the dragon's terrible, earth-rumbling whimper one last time.
 
 
 Many years pass before you realize you won't forget that sound.....'''))
@@ -513,6 +515,8 @@ Many years pass before you realize you won't forget that sound.....'''))
         print()
         print()
         print(fastest_type('''...........see......'''))
+        clear()
+        print('\033c', end='') # Clear the terminal
         death_animate() # Begin death collage
         sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=1, cols=31))
         clear()
@@ -522,6 +526,12 @@ Many years pass before you realize you won't forget that sound.....'''))
 
 piano.start()
 import blinking_effect
+blinking_effect.blinky()
+print('\033c', end='') # Clear the terminal
+print(slow_type(given_name, "......................................wake up................"))
+print('\033c', end='') # Clear the terminal
+print(slow_type("A mysterious voice calls out and then fades away............"))
+print('\033c', end='') # Clear the terminal
 
 
   
