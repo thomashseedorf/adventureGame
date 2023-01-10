@@ -14,7 +14,6 @@ import attack
 import superpie
 import random
 import multiprocessing
-import chap1ending_sequence
 
 # CONSTANTS
 FORWARD = "W"
@@ -538,7 +537,7 @@ You walk toward the opening in the wall, the place where the dragon emerged.
 Maybe you'll find something that can help, you think to yourself.'''))
                 print()
                 print()
-                chap1ending_sequence.death_animate()
+                import chap1ending_sequence
 
 
 

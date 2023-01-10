@@ -11,7 +11,6 @@ import welcome
 import random
 import multiprocessing
 import cv2
-import blink
 
 # CONSTANTS
 FORWARD = "W"
@@ -510,14 +509,14 @@ Many years pass before you realize you won't forget that sound.....'''))
         print()
         print()
         print(fastest_type('''...........see......'''))
+        death_animate() # Begin death collage
         sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=1, cols=31))
         clear()
-        death_animate() # Begin death collage
         fadedying.terminate()
         sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
         break
 
-
-
+import blinking_effect
+blinking_effect
 
   
