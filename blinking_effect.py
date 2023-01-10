@@ -2,137 +2,114 @@ import random
 import time
 import sys
 import multiprocessing
+
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
 
-def create_process(i):
-    def blinking_stars():
-      while True:
+print('\033c', end='') # Clear the terminal
+
+def blinking_stars():
+    for _ in range(6):
         x = random.randint(0, 129)
         y = random.randint(0, 40)
+        print('\033[?25l', end="")
         print("\033[{};{}H*".format(y, x))
         z = random.uniform(0, 2)
         time.sleep(z)
         print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
+
+# Create a list of processes
+processes = []
+
+# Create 500 processes
+for i in range(500):
+    p = multiprocessing.Process(target=blinking_stars)
+    processes.append(p)
+
+# Start the processes
+for p in processes:
+    p.start()
+
+# Wait for the processes to finish
+for p in processes:
+    p.join()
+
+
+def blinking_stars2():
+    for _ in range(6):
+        x = random.randint(0, 129)
+        y = random.randint(0, 40)
+        print('\033[?25l', end="")
         print("\033[{};{}H*".format(y, x))
         z = random.uniform(0, 2)
         time.sleep(z)
         print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
+
+# Create a list of processes
+processes = []
+
+# Create 400 processes
+for i in range(400):
+    p = multiprocessing.Process(target=blinking_stars2)
+    processes.append(p)
+
+# Start the processes
+for p in processes:
+    p.start()
+
+# Wait for the processes to finish
+for p in processes:
+    p.join()
+
+def blinking_stars3():
+    for _ in range(6):
+        x = random.randint(0, 129)
+        y = random.randint(0, 40)
+        print('\033[?25l', end="")
         print("\033[{};{}H*".format(y, x))
         z = random.uniform(0, 2)
         time.sleep(z)
         print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
+
+# Create a list of processes
+processes = []
+
+# Create 300 processes
+for i in range(300):
+    p = multiprocessing.Process(target=blinking_stars3)
+    processes.append(p)
+
+# Start the processes
+for p in processes:
+    p.start()
+
+# Wait for the processes to finish
+for p in processes:
+    p.join()
+
+def blinking_stars4():
+    for _ in range(6):
+        x = random.randint(0, 129)
+        y = random.randint(0, 40)
+        print('\033[?25l', end="")
         print("\033[{};{}H*".format(y, x))
         z = random.uniform(0, 2)
         time.sleep(z)
         print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-        print("\033[{};{}H*".format(y, x))
-        z = random.uniform(0, 2)
-        time.sleep(z)
-        print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-        print("\033[{};{}H*".format(y, x))
-        z = random.uniform(0, 2)
-        time.sleep(z)
-        print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-        print("\033[{};{}H*".format(y, x))
-        z = random.uniform(0, 2)
-        time.sleep(z)
-        print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-        print("\033[{};{}H*".format(y, x))
-        z = random.uniform(0, 2)
-        time.sleep(z)
-        print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-        print("\033[{};{}H*".format(y, x))
-        z = random.uniform(0, 2)
-        time.sleep(z)
-        print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-        print("\033[{};{}H*".format(y, x))
-        z = random.uniform(0, 2)
-        time.sleep(z)
-        print("\033[{};{}H ".format(y, x))
-        time.sleep(z)
-    return multiprocessing.Process(target=blinking_stars)
 
-processes175 = [create_process(i) for i in range(1, 175)]
-processes150 = [create_process(i) for i in range(1, 150)]
-processes125 = [create_process(i) for i in range(1, 125)]
-processes100 = [create_process(i) for i in range(1, 100)]
-processes75 = [create_process(i) for i in range(1, 75)]
-processes50 = [create_process(i) for i in range(1, 50)]
-processes25 = [create_process(i) for i in range(1, 25)]
-processes10 = [create_process(i) for i in range(1, 10)]
-processes5 = [create_process(i) for i in range(1, 5)]
+# Create a list of processes
+processes = []
 
+# Create 200 processes
+for i in range(200):
+    p = multiprocessing.Process(target=blinking_stars4)
+    processes.append(p)
 
-print('\033c', end='') # Clear the terminal
+# Start the processes
+for p in processes:
+    p.start()
 
-for process in processes150:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes150:
-  process.terminate()
-
-print('\033c', end='') # Clear the terminal
-
-for process in processes125:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes125:
-  process.terminate()
-
-print('\033c', end='') # Clear the terminal
-
-for process in processes100:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes100:
-  process.terminate()
-
-print('\033c', end='') # Clear the terminal
-
-for process in processes50:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes50:
-  process.terminate()
-
-print('\033c', end='') # Clear the terminal
-
-for process in processes25:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes25:
-  process.terminate()
-
-print('\033c', end='') # Clear the terminal
-
-for process in processes10:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes10:
-  process.terminate()
-
-print('\033c', end='') # Clear the terminal
-
-for process in processes5:
-  process.start()
-  print('\033[?25l', end="")
-time.sleep(3)
-for process in processes5:
-  process.terminate()
+# Wait for the processes to finish
+for p in processes:
+    p.join()
 
 print('\033c', end='') # Clear the terminal
