@@ -685,6 +685,21 @@ def main():
                 words = wrapper.fill(text=loop1)
                 print(words)       
                 print(welcome.slow_type("....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................INTERNAL ERROR................................................................................................................................................................................................................................................................................................SHUTTING DOWN..................................................................................................................................................................................................................................................................."))
+                break
+            while True:
+                command = input('> ').upper()
+                if command == INFO:
+                    print(controls())
+                elif command == ATTACK:
+                    print("You try to use the object, but something feels off. Nothing happens.")
+                elif command == INTERACT:
+                    print("The terminal is unresponsive.")
+                elif command == FORWARD or LEFT or RIGHT or BACK:
+                    print("You move away from the terminal and begin ascending the grand staircase. You reach the gargantuan double doors and instinctively reach for a handle but realize none exists. As your hand makes contact with the door, the set of doors rapidly transforms into an infinity-res display that flashes a series of indecipherable images for half a minute until turning black. ")
+                    break
+                else:
+                    print(badCommand())
+
 
             ''' TEMPLATES ****************************************
             print("\nEnter a command...\n")
