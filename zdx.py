@@ -14,6 +14,7 @@ import attack
 import superpie
 import random
 import multiprocessing
+import art_db
 
 # CONSTANTS
 FORWARD = "W"
@@ -686,7 +687,7 @@ def main():
                 print(words)       
                 print(welcome.slow_type("....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................INTERNAL ERROR................................................................................................................................................................................................................................................................................................SHUTTING DOWN..................................................................................................................................................................................................................................................................."))
                 break
-            #Loop19, Artwork
+            #Loop19, Staircase
             while True:
                 command = input('> ').upper()
                 if command == INFO:
@@ -700,7 +701,22 @@ def main():
                     break
                 else:
                     print(badCommand())
-
+            #Loop20, Artwork
+            while True:
+                command = input('> ').upper()
+                if command == INFO:
+                    print(controls())
+                elif command == ATTACK:
+                    print("You try to use the object, but something feels off. Nothing happens.")
+                elif command == INTERACT:
+                    print("The screen turns white and a relaxed, digitized face smiles back at you.")
+                    time.sleep(2)
+                    art_db()
+                elif command == FORWARD or LEFT or RIGHT or BACK:
+                    print("You investigate the area at the top of the staircase, find nothing, and return to the terminal.")
+                    break
+                else:
+                    print(badCommand())
 
             ''' TEMPLATES ****************************************
             print("\nEnter a command...\n")

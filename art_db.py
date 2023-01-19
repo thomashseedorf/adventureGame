@@ -39,10 +39,8 @@ def main():
         print()
         name = input().title()
         
-        # Connect to postgres DB
+        # Connect to postgres DB and open a cursor
         conn = psycopg2.connect(dbname="postgres", host = "artwork.c9y5rji1q0ag.us-west-2.rds.amazonaws.com", user = "postgres", password = "postgres")
-        
-        # Open a cursor to perform database operations
         cur = conn.cursor()
 
         # Execute and retrieve query
@@ -69,16 +67,16 @@ def main():
             print(tabulate(df3, headers = columns, tablefmt = 'fancy_grid', showindex='never', maxcolwidths=[90, 30]))
             print()
             cur.close()
-            
-
             time.sleep(3)
+
         print(slow_type('''Ohhhh, some of these are simply masterpieces, don't you think? 
 
 The form, the beauty, the execution—all of it deployed with the most astonishing skill and precision!
 
 Isn't this one breathtaking?'''))
         print()
-        # New dataframe to get artwork url
+        
+        # New cursor and query to get artwork url
         cur2 = conn.cursor()
         sql = "SELECT DISTINCT artist, thumbnail FROM art ORDER BY artist"
         cur2.execute(sql)
@@ -97,6 +95,7 @@ Isn't this one breathtaking?'''))
         # Open pic in browser
         webbrowser.open(daf7, new=1, autoraise=True)
 
+        # Inquiry begin
         time.sleep(30)
         clear()
         print(slow_type('''Sometimes, I catch myself wondering about beauty............
@@ -123,9 +122,8 @@ You might be on to something.
 
 '''))
 
-        
-        # Close postgresql connection
-        cur.close()
+        # Close postgresql connection and cursor
+        cur2.close()
         conn.close()
 
 main()
