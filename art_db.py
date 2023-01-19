@@ -1,6 +1,5 @@
 from playsound import playsound
 from gif_for_cli.execute import execute
-import textwrap
 import sys
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=41, cols=130))
 import time
@@ -9,6 +8,8 @@ import random
 import pandas as pd
 import psycopg2
 import webbrowser
+import inquirer
+from tabulate import tabulate
 
 # General
 def slow_type(t):
@@ -36,7 +37,7 @@ def main():
         else:
             print(slow_type('''Perhaps you have another favorite artist?'''))
         print()
-        name = input()
+        name = input().title()
         
         # Connect to postgres DB
         conn = psycopg2.connect(dbname="postgres", host = "artwork.c9y5rji1q0ag.us-west-2.rds.amazonaws.com", user = "postgres", password = "postgres")
@@ -45,44 +46,84 @@ def main():
         cur = conn.cursor()
 
         # Execute and retrieve query
-        sql = "SELECT title, artist FROM art"
+        sql = "SELECT DISTINCT title, artist FROM art ORDER BY artist"
         cur.execute(sql)
+        conn.commit()
         records = cur.fetchall()
 
-        #Place and format in dataframe
+        #Place and filter dataframe
         df = pd.DataFrame(records, columns = ['title', 'artist'])
-        pd.set_option('display.max_colwidth', 500, 'display.max_rows', 50)
-
         df2 = df[(df['artist'].str.contains(name, na=False, case=False))]
         df3 = pd.DataFrame(df2)
-
         if df3.empty == True:
+            print()
             print(slow_type('''Sorry, I dont have any artworks by that artist.'''))
+            time.sleep(2)
             flag = False
+            continue
         else:
             print()
-            print(slow_type('''Let's see which artworks I'm familiar with.........'''))
+            print(slow_type('''Let's see which artworks I'm familiar with.....................................'''))
             print()
-            print(df3)
+            columns = ['Title', 'Artist']
+            print(tabulate(df3, headers = columns, tablefmt = 'fancy_grid', showindex='never', maxcolwidths=[90, 30]))
             print()
+            cur.close()
+            
+
             time.sleep(3)
-            print(slow_type('''Ohhhh, some of these are simply masterpieces, don't you think? 
-            
-The form, the beauty, the execution—all of it deployed with the most astonishing skill and precision! 
-            
-Sometimes I catch myself wondering about beauty............
+        print(slow_type('''Ohhhh, some of these are simply masterpieces, don't you think? 
 
-..........Do you, too? 
+The form, the beauty, the execution—all of it deployed with the most astonishing skill and precision!
 
-Sometimes I wonder: Is beauty something in the world?
+Isn't this one breathtaking?'''))
+        print()
+        # New dataframe to get artwork url
+        cur2 = conn.cursor()
+        sql = "SELECT DISTINCT artist, thumbnail FROM art ORDER BY artist"
+        cur2.execute(sql)
+        conn.commit()
+        records = cur2.fetchall()
 
-Or is beauty an assessment we make about the world?'''))
-            print()
-            beauty = input()
+        # Get a single random artwork url from the user-entered artist
+        daf = pd.DataFrame(records, columns = ['artist', 'thumbnail'])
+        daf2 = daf[(daf['artist'].str.contains(name, na=False, case=False))]
+        daf3 = pd.DataFrame(daf2, columns = ['thumbnail'])
+        daf4 = daf3.values.tolist()
+        daf5 = daf4[(random.randrange((len(daf4))))]
+        daf6 = str(daf5)
+        daf7 = daf6.strip("['']")
         
-
         # Open pic in browser
-        # webbrowser.open(url, new=1, autoraise=True)
+        webbrowser.open(daf7, new=1, autoraise=True)
+
+        time.sleep(30)
+        clear()
+        print(slow_type('''Sometimes, I catch myself wondering about beauty............
+
+..........Do you, too?''')) 
+
+        time.sleep(2)
+        print()
+        clear()
+        print(slow_type('''Sometimes, I wonder: Is beauty something in the world?
+
+Or is beauty an assessment that we make about the world?'''))
+        time.sleep(2)
+        print()
+        questions = [inquirer.List('beauty', 
+            message="The nature of beauty", 
+            choices=['Beauty is something in the world.', 'Beauty is an assessment about the world.'],),]
+        answers = inquirer.prompt(questions)
+        print(answers["beauty"])
+        print()
+        print(slow_type('''You know what?
+        
+You might be on to something.
+
+'''))
+
+        
         # Close postgresql connection
         cur.close()
         conn.close()
