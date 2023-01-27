@@ -7,7 +7,7 @@ import random
 import multiprocessing
 import cv2
 if __name__ == "__main__":
-    import zdx
+    import app
     import blinking_effect
 
 # General
@@ -521,7 +521,7 @@ Many years pass before you realize you won't forget that sound.....'''))
 piano.start()
 blinking_effect.blinky()
 print('\033c', end='') # Clear the terminal
-print(slow_type(zdx.given_name, "......................................wake up................"))
+print(slow_type(app.given_name, "......................................wake up................"))
 print('\033c', end='') # Clear the terminal
 print(slow_type("A mysterious voice calls out and then fades away............"))
 print('\033c', end='') # Clear the terminal

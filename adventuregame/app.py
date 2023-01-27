@@ -126,14 +126,6 @@ def animate1(castlegif):
     execute(os.environ,["/home/tom/Desktop/gif-for-cli-master/castle.gif"], sys.stdout)
 castlegif = multiprocessing.Process(target=animate1, args=(1,))
 
-import redis
-from flask import Flask
-
-cache = redis.Redis(host='redis', port=32768)
-
-app = Flask(__name__)
-
-@app.route('/', methods=['POST', 'GET'])
 def main():
     # Game start
     welcome.print_welcome()
@@ -759,4 +751,4 @@ def main():
                 return ("\n You can't do that right now.\n")
             ***************************************************'''
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6379, debug=True)
+    main()

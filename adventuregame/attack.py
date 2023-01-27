@@ -1,7 +1,6 @@
 # importing the necessary packages
 import time
 import sys
-import os
 
 def load_animation():
     # String to be displayed when the application is loading
