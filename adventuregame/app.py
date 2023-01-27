@@ -123,7 +123,7 @@ def laser(blaster):
 
 #Threads, processes - animations
 def animate1(castlegif):
-    execute(os.environ,["/home/tom/Desktop/adventureGame/adventuregame/gif-for-cli-master/castle.gif"], sys.stdout)
+    execute(os.environ,["/home/tom/Desktop/adventureGame/adventuregame/gif_for_cli_master/castle.gif"], sys.stdout)
 castlegif = multiprocessing.Process(target=animate1, args=(1,))
 
 def main():
