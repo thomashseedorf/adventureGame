@@ -77,7 +77,7 @@ def execute(environ, argv, stdout):
             display_dirname=output_dirnames[args.display_mode],
             stdout=stdout,
             cell_char=args.cell_char,
-            seconds_per_frame=config['seconds'] / config['num_frames'],
+            seconds_per_frame=config[''] / config[''],
             cols=args.cols,
             rows=args.rows,
             cell_width=args.cell_width,
