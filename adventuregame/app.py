@@ -156,14 +156,15 @@ def main():
             print(welcome.slow_type("Take some time to review the controls. Press X at any time to see them again."))
             print(controls())
             command = input('\nPress Enter to begin your adventure.\n')
+            clear()
             loop1 ="You enter a courtyard. Four giant towers, one at each corner of the courtyard's square, loom menacingly above you. They're constructed of ancient, sturdy brick."
             wrapper = textwrap.TextWrapper(width=130)
             words = wrapper.fill(text=loop1)
             print(welcome.slow_type(words))     
-            print("\nEnter a command...\n")
 
     # Loop1, Courtyard 
-            while True:  
+            while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -177,10 +178,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))            
-            print(welcome.slow_type("Enter a command...\n"))
             
     # Loop2, Wooden door         
             while True:  
+                print("Enter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -197,10 +198,10 @@ def main():
                     print(welcome.slow_type("\nAre you sure? This door looks pretty important.\n"))
                 else:
                     print(welcome.slow_type(badCommand()))  
-            print(welcome.slow_type("Enter a command...\n"))
             
     # Loop3, Mysterious room         
             while True:
+                print("Enter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -210,10 +211,9 @@ def main():
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
                 elif command == FORWARD:
-                    print(welcome.slow_type("\n It's too dark to move forward!\n"))
+                    print(welcome.slow_type("\nIt's too dark to move forward!\n"))
                 elif command == BACK:
-                    print(welcome.slow_type(
-                        "\nYou consider going back, but something deep inside you says that it's probably worth exploring this room.\n"))
+                    print(welcome.slow_type("\nYou consider going back, but something deep inside you says that it's probably worth exploring this room.\n"))
                 elif command == LEFT or RIGHT:
                     loop3 ="\nYou start feeling along the wall. The brick is rough and cold to the touch. You hope to find something to illuminate this place. A torch? A lantern? A flashlight, perhaps?"
                     wrapper = textwrap.TextWrapper(width=130)
@@ -230,10 +230,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop4, Contraption inside mysterious room        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -241,19 +241,18 @@ def main():
                     loop4b ="Incredibly, you decide to hit the contraption as hard as you can. Glass shatters. Metal clanks. You cut your hand and break the contraption. Brilliant."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop4b)
-                    print(welcome.slow_type(words))
-                    print("\nEnter a command...\n")        
+                    print(welcome.slow_type(words))        
                     
         # Loop4b, Broken contraption            
                     while True:
+                        print("\nEnter a command...\n")
                         command = input('> ').upper()
                         if command == INFO:
                             print(controls())
                         elif command == ATTACK:
                             print(welcome.slow_type("\nIt's already broken. You've done enough.\n"))
                         elif command == INTERACT:
-                            print(welcome.slow_type(
-                                "\nYou reach down to pick up the glass and accidentally cut yourself. You're a quick learner, clearly.\n"))
+                            print(welcome.slow_type("\nYou reach down to pick up the glass and accidentally cut yourself. You're a quick learner, clearly.\n"))
                         elif command == FORWARD or LEFT or RIGHT or BACK:
                             loop4b2 ="It's dark, and you're not really sure where you're going, but you slowly feel your way to the other side of the room. You find a similar contraption bolted to the brick on the opposite wall."
                             wrapper = textwrap.TextWrapper(width=130)
@@ -262,10 +261,10 @@ def main():
                             break
                         else:
                             print(welcome.slow_type(badCommand()))         
-                    print("\nEnter a command...\n")
                     
         # Loop4c, Similar contraption            
                     while True:
+                        print("\nEnter a command...\n")
                         command = input('> ').upper()
                         if command == INFO:
                             print(controls())
@@ -295,10 +294,10 @@ def main():
                     print(welcome.slow_type(words))
                 else:
                     print(welcome.slow_type(badCommand()))
-            print(welcome.slow_type("Enter a command...\n"))
             
     # Loop5, Illuminated contraption        
             while True:
+                print("Enter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -316,10 +315,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop6, Large area        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -337,10 +336,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop7, Ornate cabinet        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -360,10 +359,10 @@ def main():
                     print(welcome.slow_type("\nWhat about the cabinet?\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop8, Weapon1
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -385,10 +384,10 @@ def main():
                     print(welcome.slow_type(cantDo()))
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop9, After weapon        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -412,10 +411,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop10, Dragon encounter        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -437,10 +436,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop11, Dragon encounter 2        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -458,10 +457,10 @@ def main():
                     print(welcome.slow_type("Going forward at this point might be a little... toasty.\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop12, Dragon encounter 3        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -482,10 +481,10 @@ def main():
                     print(welcome.slow_type("There's no time to dodge this attack!\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
             
     # Loop13, Dragon encounter 4        
             while True: 
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -503,9 +502,10 @@ def main():
                     print(welcome.slow_type("\nYou consider walking away, but a giant beast lays before you. Your curiosity gets the better of you.\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
+            
     # Loop14, Dragon encounter 5        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -579,10 +579,10 @@ def main():
             print(welcome.slow_type("You notice you've been bleeding. Your left bicep is bandaged heavily with gauze, and a large medical patch covers a portion of your back where you feel a deep, sharp, stinging pain. A startlingly large amount of blood leads to a heavy-looking door a few feet behind you. It's locked. You turn around and your eyes fixate on a prominent staircase leading to a set of double doors."))
             print()
             print()
-            print("\nEnter a command...\n")
 
             # Loop16, Palace        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -595,10 +595,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
-            print("\nEnter a command...\n")
 
             # Loop17, Palace 2        
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -650,6 +650,7 @@ def main():
                 except ValueError:
                     print(welcome.slow_type('\nYour PIN can contain only numbers.')) 
                 print()
+
             # Pie chart trigger        
                 superpie.helpfulPie(answer1, answer2, answer3, answer4)
                 print(welcome.slow_type("\nAs you just saw on the helpful pie chart, it astutely reports that 100% of your answers were all equally incorrect.\n"))
@@ -701,8 +702,10 @@ def main():
                 print(welcome.slow_type(words))     
                 print(welcome.slow_type("....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................INTERNAL ERROR................................................................................................................................................................................................................................................................................................SHUTTING DOWN..................................................................................................................................................................................................................................................................."))
                 break
+            
             #Loop19, Staircase
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -715,8 +718,10 @@ def main():
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
+            
             #Loop20, Artwork
             while True:
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
