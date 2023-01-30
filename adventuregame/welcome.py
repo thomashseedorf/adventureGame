@@ -61,7 +61,7 @@ def print_welcome():
     print(welcome_str.center(col))
     print(slow_type('                                                  Created by Tom Seedorf                '))
     print()
-    cprint("                                                  Press any key to start", attrs=['blink'])
+    cprint("                                                  Press Enter to start", attrs=['blink'])
     begin = input('> ')
     clear()
     title.terminate()
