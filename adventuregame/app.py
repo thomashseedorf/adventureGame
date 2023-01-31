@@ -24,6 +24,11 @@ INTERACT = "E"
 ATTACK = "Q"
 INFO = "X"
 
+flrb = [FORWARD, LEFT, RIGHT, BACK]
+lr = [LEFT, RIGHT]
+lbr = [LEFT, BACK, RIGHT]
+lfr = [LEFT, FORWARD, RIGHT]
+
 # FUNCTIONS
 
 # General
@@ -148,7 +153,7 @@ def main():
             print(welcome.slow_type("Not the most adventurous adventurer, are you?"))
             sys.exit()
         elif begin in ["Y", "YES"]:
-            print(welcome.slow_type("\nGreat! Let's get adventuring!\n"))
+            print(welcome.slow_type("Great! Let's get adventuring!\n"))
             print(welcome.slow_type("\nBut first things first.\n"))
             global given_name
             given_name = input("What's your full name? ")
@@ -172,7 +177,7 @@ def main():
                     print(welcome.slow_type(noWeapon1()))
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
-                elif command == FORWARD or BACK or LEFT or RIGHT:
+                elif command in flrb:
                     print(welcome.slow_type(
                         "\nYou walk up to a large door. It has old brass rivets and rotting wood, but there's no breaking it down.\n"))
                     break
@@ -194,39 +199,41 @@ def main():
                     break
                 elif command == FORWARD:
                     print(welcome.slow_type(cantDo()))
-                elif command == BACK or LEFT or RIGHT:
+                elif command in lbr:
                     print(welcome.slow_type("\nAre you sure? This door looks pretty important.\n"))
                 else:
                     print(welcome.slow_type(badCommand()))  
             
     # Loop3, Mysterious room         
             while True:
-                print("Enter a command...\n")
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
-                    print(welcome.slow_type(
-                        "\n It's not a good idea to simply start flailing about in the dark.\n"))
+                    print(welcome.slow_type("\nIt's not a good idea to simply start flailing about in the dark.\n"))
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
                 elif command == FORWARD:
                     print(welcome.slow_type("\nIt's too dark to move forward!\n"))
                 elif command == BACK:
                     print(welcome.slow_type("\nYou consider going back, but something deep inside you says that it's probably worth exploring this room.\n"))
-                elif command == LEFT or RIGHT:
-                    loop3 ="\nYou start feeling along the wall. The brick is rough and cold to the touch. You hope to find something to illuminate this place. A torch? A lantern? A flashlight, perhaps?"
+                elif command in lr:
+                    print()
+                    loop3 ="You start feeling along the wall. The brick is rough and cold to the touch. You hope to find something to illuminate this place. A torch? A lantern? A flashlight, perhaps?"
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop3)
                     print(welcome.slow_type(words))
-                    print(welcome.slow_type())
+                    print()
                     loop3b ="Wait, you think to yourself, what year is it? You ponder this question for a moment and realize you haven't the faintest idea."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop3b)
-                    print(welcome.slow_type())
+                    print(welcome.slow_type(words))
+                    print()
                     loop3c ="You continue farther along the wall until you feel some kind of contraption bolted to the brick."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop3c)
+                    print(welcome.slow_type(words))
                     break
                 else:
                     print(welcome.slow_type(badCommand()))
@@ -238,6 +245,7 @@ def main():
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
+                    print()
                     loop4b ="Incredibly, you decide to hit the contraption as hard as you can. Glass shatters. Metal clanks. You cut your hand and break the contraption. Brilliant."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop4b)
@@ -253,7 +261,8 @@ def main():
                             print(welcome.slow_type("\nIt's already broken. You've done enough.\n"))
                         elif command == INTERACT:
                             print(welcome.slow_type("\nYou reach down to pick up the glass and accidentally cut yourself. You're a quick learner, clearly.\n"))
-                        elif command == FORWARD or LEFT or RIGHT or BACK:
+                        elif command in flrb:
+                            print()
                             loop4b2 ="It's dark, and you're not really sure where you're going, but you slowly feel your way to the other side of the room. You find a similar contraption bolted to the brick on the opposite wall."
                             wrapper = textwrap.TextWrapper(width=130)
                             words = wrapper.fill(text=loop4b2)
@@ -271,24 +280,24 @@ def main():
                         elif command == ATTACK:
                             print(welcome.slow_type("\nIf you do that, you'll break this one too!\n"))
                         elif command == INTERACT:
-                            print(welcome.slow_type(
-                                "\nYou flip a switch and hear a slight buzzing. In a moment, the entire room is alive with an ominous red light from a gaudy chandelier.\n"))
-                        elif command == FORWARD or LEFT or RIGHT or BACK:
-                            print(welcome.slow_type(
-                                "\nProbably best to examine the contraption first, don't you think?\n"))
+                            print(welcome.slow_type("\nYou flip a switch and hear a slight buzzing. In a moment, the entire room is alive with an ominous red light from a gaudy chandelier.\n"))
                             break
+                        elif command in flrb:
+                            print(welcome.slow_type("\nProbably best to examine the contraption first, don't you think?\n"))
                         else:
                             print(welcome.slow_type(badCommand()))
 
                     break
                 elif command == INTERACT:
-                    loop ="\nEYou flip a switch and hear a slight buzzing. In a moment, the entire room is alive with yellow light from a gaudy chandelier."
+                    print()
+                    loop ="You flip a switch and hear a slight buzzing. In a moment, the entire room is alive with yellow light from a gaudy chandelier."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
                     break
-                elif command == FORWARD or LEFT or RIGHT or BACK:
-                    loop ="\nYou consider moving away, but you reconsider after realizing that perhaps this contraption is some sort of light-producing device that could prove useful."
+                elif command in flrb:
+                    print()
+                    loop ="You consider moving away, but you reconsider after realizing that perhaps this contraption is some sort of light-producing device that could prove useful."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
@@ -297,7 +306,7 @@ def main():
             
     # Loop5, Illuminated contraption        
             while True:
-                print("Enter a command...\n")
+                print("\nEnter a command...\n")
                 command = input('> ').upper()
                 if command == INFO:
                     print(controls())
@@ -307,8 +316,9 @@ def main():
                     print(welcome.slow_type(cantDo()))
                 elif command == FORWARD:
                     print(welcome.slow_type("\nYou bump your head against the wall. Ouch.\n"))
-                elif command == LEFT or RIGHT or BACK:
-                    loop ="\nYou move away from the contraption and survey the room. It's small and empty, much like your heart. You move through a short corridor and into a larger space, a dining hall or a recreation area, perhaps."
+                elif command in lbr:
+                    print()
+                    loop ="You move away from the contraption and survey the room. It's small and empty, much like your heart. You move through a short corridor and into a larger space, a dining hall or a recreation area, perhaps."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
@@ -328,8 +338,9 @@ def main():
                     print(welcome.slow_type(noInteract1()))
                 elif command == BACK:
                     print(welcome.slow_type("\nInstead of going back, maybe you should explore this new area you entered. Just a thought.\n"))
-                elif command == FORWARD or LEFT or RIGHT:
-                    loop ="\nYou proceed into the area and see sunlight pouring in from a caved-in ceiling. Rubble and detritus cover the floor. Rats scurry into the darkness. You move past the rubble and notice an ornate cabinet, still standing and in suspiciously good condition."
+                elif command in lfr:
+                    print()
+                    loop ="You proceed into the area and see sunlight pouring in from a caved-in ceiling. Rubble and detritus cover the floor. Rats scurry into the darkness. You move past the rubble and notice an ornate cabinet, still standing and in suspiciously good condition."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
@@ -346,16 +357,18 @@ def main():
                 elif command == ATTACK:
                     print(welcome.slow_type("\nYou give the cabinet a weighty punch, even though you see two obvious handles.\n"))
                 elif command == INTERACT:
-                    loop ="\nYou reach for one of the jewel-encrusted handles and hear a loud creak as you turn it. The handle doesn't turn easily, but you manage."
+                    print()
+                    loop ="You reach for one of the jewel-encrusted handles and hear a loud creak as you turn it. The handle doesn't turn easily, but you manage."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
-                    loopb ="\nWhen you open the cabinet, you see a glove-like object. You pick up the object and notice that it fits comfortably on your left hand. As you grip the object, you feel a slow pulse move from the object and through your body. It doesn't feel unpleasant. You decide to keep wearing the object and wonder what it can do."
+                    print()
+                    loopb ="When you open the cabinet, you see a glove-like object. You pick up the object and notice that it fits comfortably on your left hand. As you grip the object, you feel a slow pulse move from the object and through your body. It doesn't feel unpleasant. You decide to keep wearing the object and wonder what it can do."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loopb)
                     print(welcome.slow_type(words))
                     break
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type("\nWhat about the cabinet?\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
@@ -367,12 +380,12 @@ def main():
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
-                    print(welcome.slow_type())
+                    print()
                     blaster = threading.Thread(target=laser, args=(1,))
                     blaster.start()
                     time.sleep(.4)
                     attack.start_animation()
-                    print(welcome.slow_type())
+                    print()
                     loop ="You clench your fist while wearing the object and feel the object-body pulse quicken. In a moment, the object projects a flashing target on the brick wall, the pulse explodes with a tiny blast, and you watch a sizzling ball of plasma shoot from your knuckles. Its compact body slams into the wall opposite and vanishes from existence with a sharp \033[3mzap.\033[3m\033[0m"
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
@@ -380,7 +393,7 @@ def main():
                     break
                 elif command == INTERACT:
                     print(welcome.slow_type(cantDo()))
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type(cantDo()))
                 else:
                     print(welcome.slow_type(badCommand()))
@@ -392,19 +405,20 @@ def main():
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
-                    print(welcome.slow_type())
+                    print()
                     blaster = threading.Thread(target=laser, args=(1,))
                     blaster.start()
                     attack.start_animation()
-                    print(welcome.slow_type())
-                    loop ="\nYou use the attack again and watch the plasma ball shoot like a bullet from your improved appendage. The pulse feels good, and the object's power seems to grow. You wonder what the object might be doing to you, but you also feel better than you've ever felt before. You decide to keep your hand secured around the object."
+                    print()
+                    loop ="You use the attack again and watch the plasma ball shoot like a bullet from your improved appendage. The pulse feels good, and the object's power seems to grow. You wonder what the object might be doing to you, but you also feel better than you've ever felt before. You decide to keep your hand secured around the object."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
-                elif command == FORWARD or LEFT or RIGHT or BACK:
-                    loop ="\nYou move away from the cabinet and wonder how you can best use your newfound ability. Perhaps it will come in handy in the future, you think to yourself. But before you can even finish this thought, an incredible stomping and deep, guttural growling catches your attention from across the large space. You look to an oversized opening in the wall and see a giant scaly beast entering. It's a dragon!"
+                elif command in flrb:
+                    print()
+                    loop ="You move away from the cabinet and wonder how you can best use your newfound ability. Perhaps it will come in handy in the future, you think to yourself. But before you can even finish this thought, an incredible stomping and deep, guttural growling catches your attention from across the large space. You look to an oversized opening in the wall and see a giant scaly beast entering. It's a dragon!"
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
@@ -419,16 +433,16 @@ def main():
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
-                    print(welcome.slow_type())
+                    print()
                     blaster = threading.Thread(target=laser, args=(1,))
                     blaster.start()
                     attack.start_animation()
-                    print(welcome.slow_type())
+                    print()
                     print(welcome.slow_type("Direct hit! The dragon readies its own firebreath attack in response. Watch out!\n"))
                     break
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
-                elif command == LEFT or RIGHT or BACK:
+                elif command in lbr:
                     print(welcome.slow_type("You start running away like a coward and hope for the best. The dragon readies an attack!\n"))
                     break
                 elif command == FORWARD:
@@ -447,7 +461,7 @@ def main():
                     print(welcome.slow_type(cantShoot()))
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
-                elif command == LEFT or RIGHT or BACK:
+                elif command in lbr:
                     loop ="\nWithout a hint of grace, you awkwardly sidestep the firebreath but trip over your own feet. You look up to see the dragon in your face and readying another attack!"
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
@@ -465,20 +479,20 @@ def main():
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
-                    print(welcome.slow_type())
+                    print()
                     blaster = threading.Thread(target=laser, args=(1,))
                     blaster.start()
                     attack.start_animation()
-                    print(welcome.slow_type())
-                    loop ="\nAnother direct hit! The dragon lets out a violent screech and tumbles to the ground, landing mere feet from you. It looks hurt, but it can't be dead yet."
+                    print()
+                    loop ="Another direct hit! The dragon lets out a violent screech and tumbles to the ground, landing mere feet from you. It looks hurt, but it can't be dead yet."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
                     break
                 elif command == INTERACT:
                     print(welcome.slow_type(cantDo()))
-                elif command == FORWARD or LEFT or RIGHT or BACK:
-                    print(welcome.slow_type("There's no time to dodge this attack!\n"))
+                elif command in flrb:
+                    print(welcome.slow_type("There's no time to dodge this attack!"))
                 else:
                     print(welcome.slow_type(badCommand()))
             
@@ -493,12 +507,13 @@ def main():
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
                 elif command == FORWARD:
-                    loop ="\nYou begin inching toward the creature. Its heavy sighs seem to shake the entire castle. The ground rumbles. You approach around the front of the creature for a better look. As you make your way just beyond the dragon's gigantic snout, one of its eyeballs locks onto you. It watches as you approach.\n When you gaze back, you expect to see pure fury, but instead you see something different. The dragon's eye holds a mixture of confusion, agony, and terror. The heavy sighs, you realize, are whimpers."
+                    print()
+                    loop ="You begin inching toward the creature. Its heavy sighs seem to shake the entire castle. The ground rumbles. You approach around the front of the creature for a better look. As you make your way just beyond the dragon's gigantic snout, one of its eyeballs locks onto you. It watches as you approach.\n When you gaze back, you expect to see pure fury, but instead you see something different. The dragon's eye holds a mixture of confusion, agony, and terror. The heavy sighs, you realize, are whimpers."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
                     break
-                elif command == LEFT or RIGHT or BACK:
+                elif command in lbr:
                     print(welcome.slow_type("\nYou consider walking away, but a giant beast lays before you. Your curiosity gets the better of you.\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
@@ -512,12 +527,13 @@ def main():
                 elif command == ATTACK:
                     print(welcome.slow_type(cantShoot()))
                 elif command == INTERACT:
-                    loop ="\nYou reach out and touch the dragon's snout. It slowly blinks once, appearing to wince in pain. You have the creature exactly where you want it, you think to yourself. A single blow straight to the skull would likely kill it. You clutch the object tightly and feel the pulse move through your body and then return to the object."
+                    print()
+                    loop ="You reach out and touch the dragon's snout. It slowly blinks once, appearing to wince in pain. You have the creature exactly where you want it, you think to yourself. A single blow straight to the skull would likely kill it. You clutch the object tightly and feel the pulse move through your body and then return to the object."
                     wrapper = textwrap.TextWrapper(width=130)
                     words = wrapper.fill(text=loop)
                     print(welcome.slow_type(words))
                     break
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type("You're so close, you could practically reach out and touch the beast!\n"))
                 else:
                     print(welcome.slow_type(badCommand()))
@@ -537,7 +553,7 @@ def main():
                     else:
                         print(welcome.slow_type("Please enter Yes or No."))
                 elif begin in ["N", "NO"]:
-                    print(welcome.slow_type())
+                    print()
                     print(welcome.slow_type(welcome.slow_type('''You decide to spare the dragon, perhaps saving its life.
 
 
@@ -590,7 +606,7 @@ def main():
                     print(welcome.slow_type("You try to use the object, but something feels off. Nothing happens."))
                 elif command == INTERACT:
                     print(welcome.slow_type(noInteract1()))
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type("You move toward the staircase and notice a computer terminal at the base of the stairs, tucked slightly out of view. You approach the terminal."))
                     break
                 else:
@@ -606,7 +622,7 @@ def main():
                     print(welcome.slow_type("You try to use the object, but something feels off. Nothing happens."))
                 elif command == INTERACT:
                     print(welcome.slow_type("The terminal boots up and displays a familiar logo. The machine prompts you for a PIN under an account named admin."))
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type("Your arms aren't long enough to move away from the terminal and reach the keyboard."))
                     break
                 else:
@@ -633,7 +649,7 @@ def main():
                 print()
                 try:
                     answer3 = int(input('\nPlease enter your PIN: '))
-                    print(welcome.slow_type())
+                    print()
                     print(welcome.slow_type(answer3, 'is again incorrect. You have two remaining attempts.'))
                     print(welcome.slow_type("\nFurther attempts beyond the mandatory five will result in the loss of all data on this terminal."))
                     pass
@@ -713,7 +729,7 @@ def main():
                     print(welcome.slow_type("You try to use the object, but something feels off. Nothing happens."))
                 elif command == INTERACT:
                     print(welcome.slow_type("The terminal is unresponsive."))
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type("You move away from the terminal and begin ascending the grand staircase. You reach the gargantuan double doors and instinctively reach for a handle but realize none exists. As your hand makes contact with the door, the set of doors rapidly transforms into an infinity-res display that flashes a series of indecipherable images for half a minute until turning black. "))
                     break
                 else:
@@ -731,7 +747,7 @@ def main():
                     print(welcome.slow_type("The screen turns white and a relaxed, digitized face smiles back at you."))
                     time.sleep(2)
                     import art_db
-                elif command == FORWARD or LEFT or RIGHT or BACK:
+                elif command in flrb:
                     print(welcome.slow_type("You investigate the area at the top of the staircase, find nothing, and return to the terminal."))
                     break
                 else:
@@ -747,7 +763,7 @@ def main():
                             print(welcome.slow_type(noWeapon1())
                         elif command == INTERACT:
                             print(welcome.slow_type(noInteract1())
-                        elif command == FORWARD or LEFT or RIGHT or BACK:
+                        elif command in flrb:
                             print(welcome.slow_type("something")
                             break
                         else:
