@@ -67,19 +67,19 @@ def print_welcome():
     title.terminate()
     print(slow_type('''
     
-    You see a large castle in the distance...
-    
-    
-    Its beauty entrances you...
-    
-    
-    Is that someone in the tower?
-    
-    
-    You stop and peer upward at a brilliant yellow belfry...
+You see a large castle in the distance...
 
 
-    You hope to remain unseen while determining your next move...
-    
-    
-    You look for clues to assist your entry..........'''))
+Its beauty entrances you...
+
+
+Is that someone in the tower?
+
+
+You stop and peer upward at a brilliant yellow belfry...
+
+
+You hope to remain unseen while determining your next move...
+
+
+You look for clues to assist your entry..........'''))
