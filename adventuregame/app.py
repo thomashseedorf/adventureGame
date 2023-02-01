@@ -1313,6 +1313,7 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                     pass
                 except ValueError:
                     print(slow_type('\nYour PIN can only contain numbers.'))
+                    continue
                 try:
                     print(slow_type('\nPlease enter your PIN:'))
                     print()
@@ -1325,6 +1326,7 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                     pass
                 except ValueError:
                     print(slow_type('\nYour PIN can only contain numbers.'))
+                    continue
                 try:
                     print(slow_type('\nPlease enter your PIN:'))
                     print()
@@ -1337,7 +1339,8 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                     print(slow_type("\nFurther attempts beyond the alloted five will result in the loss of all data on this terminal."))
                     pass
                 except ValueError:
-                    print(slow_type('\nYour PIN can only contain numbers.')) 
+                    print(slow_type('\nYour PIN can only contain numbers.'))
+                    continue
                 try:
                     print(slow_type('\nPlease enter your PIN:'))
                     print()
@@ -1351,24 +1354,35 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                     print(slow_type('Would you like to reset your PIN? (Y)es or (N)o'))
                     print()
                     reset = input("> ")
-                    pass # Add Yes/no logic
+                    if reset in ["N", "NO"]:
+                        print(slow_type("Not the most adventurous adventurer, are you?"))
+                        
+                    elif reset in ["Y", "YES"]:
+                        break
+                    pass
                 except ValueError:
-                    print(slow_type('\nYour PIN can only contain numbers.')) 
+                    print(slow_type('\nYour PIN can only contain numbers.'))
+                    continue
                 print()
                 print(slow_type('One moment. Let me pull up the PIN hint configured for your account...........................'))
 
             # Pie chart trigger        
+                if len(answerlist) > 4:
+                    answerlist = answerlist[:4]
                 helpfulPie(answerlist[0], answerlist[1], answerlist[2], answerlist[3])
                 print(slow_type("\nAs you just saw on the helpful pie chart, it astutely reports that 100% of your answers were all equally incorrect."))
                 try:
                     while True:
-                        answer5 = int(input('\nPlease use this helpful knowledge to enter your correct PIN: '))
+                        print(slow_type("\nPlease use this helpful knowledge to enter your correct PIN:"))
+                        print()
+                        answer5 = int(input('\n> '))
                         if answer5 in answerlist:
                             print(slow_type("\nYou've already tried that PIN."))
                         else:
                             break
                 except ValueError:
-                    print(slow_type('Your PIN can contain only numbers.'))
+                    print(slow_type('Your PIN can only contain numbers.'))
+                    continue
 
             # Machine interaction
                 print()
@@ -1377,13 +1391,13 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                 print(slow_type("I knew \033[3myou'd\033[3m\033[0m get it eventually."))
                 print()
                 time.sleep(2)
-                print(slow_type("Calculating results..............................................................."))
+                print(slow_type("Calculating results..."))
                 print()
-                    
+                
                 progress_bar = tqdm(total=total) # Create a progress bar
                 for i in range(total): # Update the progress bar
                     progress_bar.update(1)
-                    time.sleep(0.1)
+                    time.sleep(random.uniform(.01, .1))
                 progress_bar.close() # Close the progress bar
 
                 print()
@@ -1427,20 +1441,28 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                 print()
                 print(slow_type("Whether you've been here before depends on prior commitments you've made to your self concept."))
                 print()
-                print(slow_type2("Tell me, ",given_name,", how does your life feel to you?"))
+                print(slow_type2("Tell me, ",given_name,"."))
+                print()
+                time.sleep(1)
+                print(slow_type("How does your life feel to you?"))
+                time.sleep(1)
                 print()
                 print(slow_type("Does it feel like one long succession of events, thoughts, feelings, and experiences?"))
+                time.sleep(1)
                 print()
                 print(slow_type("An existence interrupted only briefly by periods of sleep and dreaming?"))
+                time.sleep(1)
                 print()
                 print(slow_type("A drunken, dizzying dance that nevertheless retains an unmistakable continuity?"))
+                time.sleep(1)
                 print()
                 print(slow_type("A conviction that compels you to believe that you and your childhood self are the same person?"))
+                time.sleep(1)
                 print()
                 print(slow_type("Is that how your life feels?"))
                 time.sleep(2)
                 print()
-                print(fastest_type("..................................................................................INTERNAL ERROR.......................................................................................................................................................SHUTTING DOWN............................................................................................................."))
+                print(fastest_type(".........................................INTERNAL ERROR............................................................................................................................SHUTTING DOWN........................................................................"))
                 break
 
             #Loop19, Staircase
@@ -1454,9 +1476,14 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                 elif command == INTERACT:
                     print(slow_type("The terminal is unresponsive."))
                 elif command in flrb:
-                    print(slow_type("""You move away from the terminal and begin ascending the grand staircase. You reach the gargantuan double doors and instinctively reach for a handle but realize none exists. 
-                    
-            As your hand makes contact with the door, the set of doors rapidly transforms into an infinity-res display that flashes a series of indecipherable images for half a minute until turning black."""))
+                    loop ="You move away from the terminal and begin ascending the grand staircase. You reach the gargantuan double doors and instinctively reach for a handle but realize none exists."
+                    textwrap.TextWrapper(width=130, replace_whitespace=False)
+                    words = wrapper.fill(text=loop)
+                    print(slow_type(words))
+                    loopb ="As your hand makes contact with the door, the set of doors rapidly transforms into an infinity-res display that flashes a series of indecipherable images for half a minute until turning black."
+                    textwrap.TextWrapper(width=130, replace_whitespace=False)
+                    words = wrapper.fill(text=loopb)
+                    print(slow_type(words))
                     break
                 else:
                     print(slow_type(badCommand()))
@@ -1468,13 +1495,13 @@ You turn around and your eyes fixate on a prominent staircase leading to a set o
                 if command == INFO:
                     print(controls())
                 elif command == ATTACK:
-                    print(slow_type("You try to use the object, but something feels off. Nothing happens."))
+                    print(slow_type("\nYou try to use the object, but something feels off. Nothing happens."))
                 elif command == INTERACT:
-                    print(slow_type("The screen turns white and a relaxed, digitized face smiles back at you."))
+                    print(slow_type("\nThe screen turns white and a relaxed, digitized face smiles back at you."))
                     time.sleep(2)
                     import art_db
                 elif command in flrb:
-                    print(slow_type("You investigate the area at the top of the staircase, find nothing, and return to the terminal."))
+                    print(slow_type("\nYou investigate the area at the top of the staircase, find nothing, and return to the terminal."))
                     break
                 else:
                     print(slow_type(badCommand()))
