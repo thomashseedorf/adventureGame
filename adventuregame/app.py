@@ -1590,10 +1590,49 @@ New trainingModel(helpfulGraph) confidence:.............99.370039481%"""))
                         print(slow_type('''You know what?'''))
                         print()
                         print(slow_type('''You might be on to something.'''))
-
-                        # Close postgresql connection and cursor
+                        
+                        # Close cursor
                         cur2.close()
+
+                        # New cursor and query to get artwork
+                        cur3 = conn.cursor()
+                        sql = "SELECT DISTINCT artist, title, thumbnail FROM art ORDER BY artist"
+                        cur3.execute(sql)
+                        conn.commit()
+                        records = cur3.fetchall()
+
+                        # Put into dataframe and filter for specific artist
+                        dbf = pd.DataFrame(records, columns = ['artist', 'title', 'thumbnail'])
+                        dbf2 = dbf[(dbf['artist'] == "Bridget Riley")]
+                        dbf3 = pd.DataFrame(dbf2, columns = ['title'])
+                        dbf4 = dbf3.values.tolist()
+                        result = [item[0].strip('"') for item in dbf4]
+
+                        # Pick an artwork from the previous artist
+                        questions = [inquirer.List('artworkRiley',
+                            message="Choose an artwork",
+                            choices=result,),]
+                        selection = inquirer.prompt(questions)
+                        
+                        # Scrub result
+                        cleaned = str(selection["artworkRiley"])
+                        final = '"' + cleaned + '"'
+
+                        # Filter for thumbnail value
+                        dcf2 = dbf[(dbf['artist'] == "Bridget Riley") & (dbf['title'] == final)]
+                        thumbnail_value = dcf2['thumbnail'].values[0]
+                        
+                        # Open pic in browser
+                        webbrowser.open(thumbnail_value, new=1, autoraise=True)
+
+                        # Close postgresql connection
+                        cur3.close()
                         conn.close()
+
+                        print("Did you like it?")
+                        print()
+                        response = input("> ")
+
                 elif command in flrb:
                     print(slow_type("\nYou investigate the area at the top of the staircase, find nothing, and return to the terminal."))
                     break
